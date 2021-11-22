@@ -8,13 +8,14 @@ let endpoint = '';
 let client = null;
 
 const masterKey = settings.Values.AzureCosmosDBMasterKey;
-const matches = settings.Values.AzureCosmosDBConnectionString.match(/(https.*?);/);
+const matches =
+  settings.Values.AzureCosmosDBConnectionString.match(/(https.*?);/);
 
-if(matches && matches.length > 1) {
-    endpoint = matches[1];
-    client = new CosmosClient({ endpoint, auth: { masterKey } });
+if (matches && matches.length > 1) {
+  endpoint = matches[1];
+  client = new CosmosClient({ endpoint, auth: { masterKey } });
 } else {
-    console.log('Cannot locate Cosmos DB endpoint from connection string.');
+  console.log('Cannot locate Cosmos DB endpoint from connection string.');
 }
 
 module.exports = client;
